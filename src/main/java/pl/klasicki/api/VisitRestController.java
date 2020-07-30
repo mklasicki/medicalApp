@@ -34,6 +34,7 @@ public class VisitRestController {
     public Visit addVisit(@RequestBody Visit visit) {
         log.info("added new visit to the list with id {}", visit.getId());
         return visitService.addVisit(visit);
+
     }
 
     @PutMapping("/api/visits/{id}")
