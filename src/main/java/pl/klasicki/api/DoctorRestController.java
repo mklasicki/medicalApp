@@ -1,7 +1,9 @@
 package pl.klasicki.api;
 
+
 import org.springframework.web.bind.annotation.*;
 import pl.klasicki.domain.Doctor;
+import pl.klasicki.exceptions.DoctorNotFoundException;
 import pl.klasicki.services.DoctorService;
 
 import java.util.List;
@@ -23,6 +25,11 @@ public class DoctorRestController {
 
     @GetMapping("/api/doctors/{id}")
     public Optional<Doctor> findById(@PathVariable Long id) {
+
+        if (id < 0 || id > doctorService.getAll().size()) {
+            throw new DoctorNotFoundException("Doctor id not found " + id);
+        }
+
         return doctorService.findById(id);
     }
 
@@ -42,3 +49,6 @@ public class DoctorRestController {
     }
 
 }
+
+
+
