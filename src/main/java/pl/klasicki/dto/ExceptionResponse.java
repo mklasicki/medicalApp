@@ -2,17 +2,28 @@ package pl.klasicki.dto;
 
 public class ExceptionResponse {
 
+    private int id;
     private int status;
     private String message;
     private long timeStamp;
 
+
     public ExceptionResponse() {
     }
 
-    public ExceptionResponse(int status, String message, long timeStamp) {
+    public ExceptionResponse(int id, int status, String message, long timeStamp) {
+        this.id = id;
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getStatus() {
