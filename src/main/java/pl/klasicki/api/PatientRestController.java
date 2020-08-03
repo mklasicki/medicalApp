@@ -37,7 +37,7 @@ public class PatientRestController {
         return patientService.add(patient);
     }
 
-    @PutMapping("/api/patients/{api}")
+    @PutMapping("/api/patients/{id}")
     public Patient update(@PathVariable Long id, @RequestBody Patient patient) {
         return patientService.add(patient);
     }

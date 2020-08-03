@@ -8,6 +8,8 @@ import pl.klasicki.domain.Doctor;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 @Service
 public class DoctorService {
@@ -25,7 +27,7 @@ public class DoctorService {
     }
 
     public Optional<Doctor> findById(Long id) {
-        logger.info("Looging for doctor with id {}", id);
+        logger.info("Looking for doctor with id {}", id);
         return doctorRepository.findById(id);
     }
 
@@ -37,6 +39,13 @@ public class DoctorService {
     public void delete(Long id) {
         logger.info("Deleting from list doctor with id {}", id);
         doctorRepository.deleteById(id);
+    }
+
+    public List<Doctor> findBySpec(String spec) {
+        List<Doctor> doctors = doctorRepository.findAll();
+        List<Doctor> result = doctors.stream().filter(doctor -> doctor.getSpecialization()
+                                .equals(spec)).collect(Collectors.toList());
+        return result;
     }
 
 }

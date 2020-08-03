@@ -30,7 +30,12 @@ public class DoctorRestController {
         return doctors;
     }
 
-    @GetMapping("/api/doctors/{id}")
+    @GetMapping("/api/doctors/spec/{spec}")
+    public List<Doctor> findBySpec(@PathVariable String spec) {
+        return doctorService.findBySpec(spec);
+    }
+
+    @GetMapping("/api/doctors/id/{id}")
     public Optional<Doctor> findById(@PathVariable Long id) {
 
         if (id < 0 || id > doctorService.getAll().size()) {
