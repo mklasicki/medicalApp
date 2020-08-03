@@ -3,17 +3,18 @@ package pl.klasicki.controllers;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import pl.klasicki.domain.Doctor;
 
-import java.util.Arrays;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@Controller
 @RequestMapping("/demo")
 public class DemoController {
 
@@ -26,21 +27,25 @@ public class DemoController {
     }
 
     @GetMapping("/doctors")
-    public List<Object> getDoctors() {
-        Object[] objects = restTemplate.getForObject(BASE_URL, Object[].class);
-        return Arrays.asList(objects);
+    public String getDoctors(Model model) {
+
+        model.addAttribute("doctors", restTemplate.getForObject(BASE_URL, Object[].class));
+        return "demo";
 
     }
 
+
     @GetMapping("/doctors/{id}")
-    public ResponseEntity<Doctor> findById(@PathVariable Long id) {
+    public String findById(@PathVariable Long id, Model model) {
         Map<String, Long> param = new HashMap<>();
         param.put("id", id);
         ResponseEntity<Doctor> response = restTemplate.exchange(URL_WITH_ID_PARAM,
                                                                 HttpMethod.GET,
                                                                 HttpEntity.EMPTY,
                                                                 Doctor.class, param);
-        return response;
+        model.addAttribute("doctor", response);
+
+        return "demo";
     }
 
     @DeleteMapping("/doctors/{id}")
