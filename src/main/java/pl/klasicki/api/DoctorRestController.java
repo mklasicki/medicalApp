@@ -3,6 +3,7 @@ package pl.klasicki.api;
 
 import org.springframework.web.bind.annotation.*;
 import pl.klasicki.domain.Doctor;
+import pl.klasicki.exceptions.DataNotFoundException;
 import pl.klasicki.exceptions.DoctorNotFoundException;
 import pl.klasicki.services.DoctorService;
 
@@ -20,7 +21,13 @@ public class DoctorRestController {
 
     @GetMapping("/api/doctors/")
     public List<Doctor> getAll() {
-        return doctorService.getAll();
+        List<Doctor> doctors = doctorService.getAll();
+
+        if (doctors.isEmpty()) {
+            throw new DataNotFoundException("There is no data in database.");
+        }
+
+        return doctors;
     }
 
     @GetMapping("/api/doctors/{id}")
