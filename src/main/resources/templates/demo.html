@@ -6,7 +6,12 @@
     <title>Strona główna.</title>
 </head>
 <body>
-<p th:text="${doctor}" >text</p>
+<p th:each="doctor: ${doctors}">
+    <td th:text="${doctor.id}" />
+    <td th:text="${doctor.firstName}" />
+    <td th:text="${doctor.lastName}" />
+    <td th:text="${doctor.specialization}" />
+</p>
 
 </body>
 </html>
