@@ -1,6 +1,9 @@
 package pl.klasicki.api;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.klasicki.domain.Doctor;
 import pl.klasicki.exceptions.DataNotFoundException;
@@ -10,6 +13,7 @@ import pl.klasicki.services.DoctorService;
 import java.util.List;
 import java.util.Optional;
 
+@Api(tags = "Doctor")
 @RestController
 public class DoctorRestController {
 
@@ -19,6 +23,7 @@ public class DoctorRestController {
         this.doctorService = doctorService;
     }
 
+    @ApiOperation(value = "List of all doctors")
     @GetMapping("/api/doctors/")
     public List<Doctor> getAll() {
         List<Doctor> doctors = doctorService.getAll();
@@ -30,11 +35,13 @@ public class DoctorRestController {
         return doctors;
     }
 
+    @ApiOperation(value = "Search doctors by their specialization")
     @GetMapping("/api/doctors/spec/{spec}")
     public List<Doctor> findBySpec(@PathVariable String spec) {
         return doctorService.findBySpec(spec);
     }
 
+    @ApiOperation(value = "Search doctor by their id")
     @GetMapping("/api/doctors/id/{id}")
     public Optional<Doctor> findById(@PathVariable Long id) {
 
@@ -45,18 +52,31 @@ public class DoctorRestController {
         return doctorService.findById(id);
     }
 
+    @ApiOperation(value = "Add new doctor to the database")
     @PostMapping("/api/doctors/")
+    @ResponseStatus(HttpStatus.CREATED)
     public Doctor add(@RequestBody Doctor doctor) {
         return doctorService.add(doctor);
     }
 
+    @ApiOperation(value = "Update doctor's details")
     @PutMapping("/api/doctors/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Doctor update(@PathVariable Long id, @RequestBody Doctor doctor) {
+        if (id < 0 || id > doctorService.getAll().size()) {
+            throw new DoctorNotFoundException("Doctor id not found " + id);
+        }
         return doctorService.add(doctor);
     }
 
+    @ApiOperation(value = "Delete doctor by the id")
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/api/doctors/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id)
+    {
+        if (id < 0 || id > doctorService.getAll().size()) {
+            throw new DoctorNotFoundException("Doctor id not found " + id);
+        }
         doctorService.delete(id);
     }
 

@@ -1,5 +1,6 @@
 package pl.klasicki.api;
 
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import pl.klasicki.services.VisitService;
 
 import java.util.Optional;
 
+@Api(tags = "Visit")
 @RestController
 public class VisitRestController {
 
@@ -30,7 +32,7 @@ public class VisitRestController {
         return visitService.findObeById(id);
     }
 
-    @PostMapping("/api/visits")
+    @PostMapping("/api/visits/")
     public Visit addVisit(@RequestBody Visit visit) {
         log.info("added new visit to the list with id {}", visit.getId());
         return visitService.addVisit(visit);
