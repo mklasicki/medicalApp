@@ -6,12 +6,26 @@
     <title>Strona główna.</title>
 </head>
 <body>
-<p th:each="doctor: ${doctors}">
-    <td th:text="${doctor.id}" />
-    <td th:text="${doctor.firstName}" />
-    <td th:text="${doctor.lastName}" />
-    <td th:text="${doctor.specialization}" />
-</p>
+<form name="doctorForm" method="post">
+    <table>
+        <tr>
+            <td>Wybierz specjalizacje lekarza:</td>
+            <td>
+                <select>
+                    <option value="--"></option>
+                    <option th:each="doctor:${doctors}"
+                            th:value="${doctor.id}"
+                            th:text="${doctor.specialization}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input name="submit" type="submit" value="Zatwierdź">
+            </td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>

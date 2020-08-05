@@ -15,8 +15,6 @@ public class DemoController {
     private final Logger logger = LoggerFactory.getLogger(DemoController.class);
     private DemoControllerService demoControllerService;
 
-   // private final String URL_WITH_ID_PARAM = "http://localhost:8080/api/doctors/id/{id}";
-
     public DemoController(DemoControllerService demoControllerService) {
         this.demoControllerService = demoControllerService;
     }
@@ -26,12 +24,9 @@ public class DemoController {
 
         model.addAttribute("doctors", demoControllerService.getAll());
 
-        logger.info("Calling method from DemoController class");
+        logger.info("Calling method from DemoController class ");
 
         return "demo";
-
     }
-
-
 
 }

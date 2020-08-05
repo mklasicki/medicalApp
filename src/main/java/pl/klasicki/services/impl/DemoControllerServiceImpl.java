@@ -1,6 +1,7 @@
 package pl.klasicki.services.impl;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,10 +15,11 @@ import java.util.List;
 public class DemoControllerServiceImpl implements DemoControllerService {
 
     private RestTemplate restTemplate;
-    private final String BASE_URL = "http://localhost:8080/api/doctors/";
+    private final String BASE_URL;
 
-    public DemoControllerServiceImpl(RestTemplate restTemplate) {
+    public DemoControllerServiceImpl(RestTemplate restTemplate, @Value("${BASE.URL}") String BASE_URL) {
         this.restTemplate = restTemplate;
+        this.BASE_URL = BASE_URL;
     }
 
     @Override
