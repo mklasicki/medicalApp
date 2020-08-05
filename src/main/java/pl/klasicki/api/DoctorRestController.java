@@ -23,7 +23,7 @@ public class DoctorRestController {
         this.doctorService = doctorService;
     }
 
-    @ApiOperation(value = "List of all doctors")
+    @ApiOperation(value = "Get list of all doctors")
     @GetMapping("/api/doctors/")
     public List<Doctor> getAll() {
         List<Doctor> doctors = doctorService.getAll();
@@ -35,13 +35,13 @@ public class DoctorRestController {
         return doctors;
     }
 
-    @ApiOperation(value = "Search doctors by their specialization")
+    @ApiOperation(value = "Get doctor by specialization")
     @GetMapping("/api/doctors/spec/{spec}")
     public List<Doctor> findBySpec(@PathVariable String spec) {
         return doctorService.findBySpec(spec);
     }
 
-    @ApiOperation(value = "Search doctor by their id")
+    @ApiOperation(value = "Get doctor by id")
     @GetMapping("/api/doctors/id/{id}")
     public Optional<Doctor> findById(@PathVariable Long id) {
 
@@ -52,14 +52,14 @@ public class DoctorRestController {
         return doctorService.findById(id);
     }
 
-    @ApiOperation(value = "Add new doctor to the database")
+    @ApiOperation(value = "Create a new doctor")
     @PostMapping("/api/doctors/")
     @ResponseStatus(HttpStatus.CREATED)
     public Doctor add(@RequestBody Doctor doctor) {
         return doctorService.add(doctor);
     }
 
-    @ApiOperation(value = "Update doctor's details")
+    @ApiOperation(value = "Update a doctor's details")
     @PutMapping("/api/doctors/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Doctor update(@PathVariable Long id, @RequestBody Doctor doctor) {
@@ -69,7 +69,7 @@ public class DoctorRestController {
         return doctorService.add(doctor);
     }
 
-    @ApiOperation(value = "Delete doctor by the id")
+    @ApiOperation(value = "Delete a doctor")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/api/doctors/{id}")
     public void delete(@PathVariable Long id)

@@ -20,13 +20,13 @@ public class PatientRestController {
         this.patientService = patientService;
     }
 
-    @ApiOperation(value = "List of all patients")
+    @ApiOperation(value = "Get list of all the patients")
     @GetMapping("/api/patients/")
     public List<Patient> getAll() {
         return patientService.getAll();
     }
 
-    @ApiOperation(value = "Search patient by id")
+    @ApiOperation(value = "Get patient by id")
     @GetMapping("/api/patients/{id}")
     public Optional<Patient> findById(@PathVariable Long id) {
 
@@ -37,7 +37,7 @@ public class PatientRestController {
         return patientService.findById(id);
     }
 
-    @ApiOperation(value = "Add new patient to the database")
+    @ApiOperation(value = "Create a new patient")
     @PostMapping("/api/patients/")
     public Patient add(@RequestBody Patient patient) {
         return patientService.add(patient);
@@ -49,7 +49,7 @@ public class PatientRestController {
         return patientService.add(patient);
     }
 
-    @ApiOperation("Delete patient by id")
+    @ApiOperation("Delete patient")
     @DeleteMapping("/api/patients/{id}")
     public void delete(@PathVariable Long id) {
         patientService.delete(id);
