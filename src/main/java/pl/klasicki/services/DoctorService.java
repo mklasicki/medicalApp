@@ -42,8 +42,7 @@ public class DoctorService {
     }
 
     public List<Doctor> findBySpec(String spec) {
-        List<Doctor> doctors = doctorRepository.findAll();
-        List<Doctor> result = doctors.stream().filter(doctor -> doctor.getSpecialization()
+        List<Doctor> result = doctorRepository.findAll().stream().filter(doctor -> doctor.getSpecialization()
                                 .equals(spec)).collect(Collectors.toList());
         return result;
     }
