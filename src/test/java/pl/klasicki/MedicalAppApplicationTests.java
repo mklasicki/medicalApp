@@ -8,6 +8,7 @@ class MedicalAppApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

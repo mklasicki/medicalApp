@@ -7,5 +7,4 @@ import pl.klasicki.domain.Doctor;
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
-
 }
