@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.klasicki.domain.Doctor;
-import pl.klasicki.exceptions.DataNotFoundException;
 import pl.klasicki.exceptions.DoctorNotFoundException;
 import pl.klasicki.services.DoctorService;
 
@@ -27,10 +26,6 @@ public class DoctorRestController {
     @GetMapping("/api/doctors/")
     public List<Doctor> getAll() {
         List<Doctor> doctors = doctorService.getAll();
-
-        if (doctors.isEmpty()) {
-            throw new DataNotFoundException("There is no data in database.");
-        }
 
         return doctors;
     }

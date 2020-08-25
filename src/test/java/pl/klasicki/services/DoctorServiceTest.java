@@ -35,7 +35,6 @@ class DoctorServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        doctorService = new DoctorService(doctorRepository);
     }
 
     @Test
