@@ -3,9 +3,10 @@ package pl.klasicki.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import pl.klasicki.dao.DoctorRepository;
 import pl.klasicki.domain.Doctor;
 import pl.klasicki.exceptions.DoctorNotFoundException;
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-
+@ExtendWith(MockitoExtension.class)
 class DoctorServiceTest {
 
     private final long USER_ID = 1L;
@@ -34,7 +35,7 @@ class DoctorServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+     //   MockitoAnnotations.initMocks(this);
     }
 
     @Test
