@@ -22,7 +22,6 @@ public class DoctorRestController {
         this.doctorService = doctorService;
     }
 
-
     @ApiOperation(value = "Get list of all doctors")
     @GetMapping("/api/doctors/")
     public List<Doctor> getAll() {
