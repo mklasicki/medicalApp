@@ -15,6 +15,8 @@ import pl.klasicki.domain.Doctor;
 import pl.klasicki.services.DoctorService;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -25,6 +27,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(DoctorRestController.class)
 class DoctorRestControllerTest {
+
+    private final long USER_ID = 1L;
 
     @Autowired
     MockMvc mockMvc;
@@ -63,7 +67,19 @@ class DoctorRestControllerTest {
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception {
+
+        //given
+        given(doctorService.getAll()).willReturn(generateTestData());
+
+        //then
+        Optional<Doctor> testDoctorResult = doctorRestController.findById(USER_ID);
+
+        //then
+       mockMvc.perform(MockMvcRequestBuilders.get("/api/doctors/id/" + USER_ID))
+               .andExpect(status().isOk())
+               .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
     }
 
     @Test
@@ -90,6 +106,15 @@ class DoctorRestControllerTest {
 
     @Test
     void delete() {
+
+        //given
+        //when
+        doctorService.delete(USER_ID);
+
+        //then
+        verify(doctorService, times(1)).delete(USER_ID);
+
+
     }
 
     private List<Doctor> generateTestData() {
