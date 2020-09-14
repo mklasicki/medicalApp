@@ -40,7 +40,7 @@ class DoctorServiceTest {
 
     @Test
     @DisplayName("Getting all doctors")
-    void getAll() {
+    void should_return_list_of_all_the_doctors() {
 
         //given
         List<Doctor> doctorList = generateTestData();
@@ -56,7 +56,7 @@ class DoctorServiceTest {
 
     @Test
     @DisplayName("Get Doctor by id")
-    void findById() {
+    void should_return_one_doctor_when_given_id() {
 
         //given
         Optional<Doctor> doctor = Optional.of(new Doctor("Marcin", "Klasicki", USER_ID, "dentysta"));
@@ -73,7 +73,7 @@ class DoctorServiceTest {
 
     @Test
     @DisplayName("Throw DoctorNotFoundException")
-    void findById_ThrowsDoctorNotFoundException() {
+    void should_throw_DoctorNotFoundException_when_doctor_not_found() {
 
         //given
         //when
@@ -85,7 +85,7 @@ class DoctorServiceTest {
 
     @Test
     @DisplayName("Save new doctor")
-    void addNewDoctor() {
+    void should_add_new_doctor() {
 
         //given
         Doctor doctor = new Doctor("Marcin", "Klasicki", 1L, "dentysta");
@@ -102,7 +102,7 @@ class DoctorServiceTest {
 
     @Test
     @DisplayName("Delete doctor")
-    void deleteDoctor() {
+    void should_delete_doctor_when_given_id() {
 
         //given
         //when
