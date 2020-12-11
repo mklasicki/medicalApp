@@ -27,8 +27,8 @@ public class DemoControllerServiceImpl implements DemoControllerService {
 
         ResponseEntity<Doctor[]> response = restTemplate.getForEntity(BASE_URL, Doctor[].class);
         Doctor[] doctors = response.getBody();
-        List<Doctor> doctorList = Arrays.asList(doctors);
 
-        return doctorList;
+
+        return Arrays.asList(doctors);
     }
 }
