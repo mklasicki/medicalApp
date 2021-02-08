@@ -8,7 +8,6 @@ import pl.klasicki.domain.Doctor;
 import pl.klasicki.exceptions.DoctorNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -27,9 +26,8 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
-    public Optional<Doctor> findById(Long id) throws DoctorNotFoundException {
-        logger.info("Looking for doctor with id {}", id);
-        return doctorRepository.findById(id);
+    public Doctor findById(Long id) throws DoctorNotFoundException {
+        return doctorRepository.findById(id).orElseThrow(() -> new DoctorNotFoundException("Not found"));
     }
 
     public Doctor add(Doctor doctor) {

@@ -11,7 +11,6 @@ import pl.klasicki.exceptions.DoctorNotFoundException;
 import pl.klasicki.services.DoctorService;
 
 import java.util.List;
-import java.util.Optional;
 import javax.validation.Valid;
 
 @Api(tags = "Doctor")
@@ -38,7 +37,7 @@ public class DoctorRestController {
 
     @ApiOperation(value = "Get doctor by id")
     @GetMapping("/api/doctors/id/{id}")
-    public ResponseEntity<Optional<Doctor>> findById(@PathVariable Long id) {
+    public ResponseEntity<Doctor> findById(@PathVariable Long id) {
         responseCheck(id);
         return new ResponseEntity<>(doctorService.findById(id), HttpStatus.OK);
     }

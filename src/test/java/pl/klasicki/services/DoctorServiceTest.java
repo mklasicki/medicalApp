@@ -3,11 +3,11 @@ package pl.klasicki.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.MockitoJUnitRunner;
 import pl.klasicki.dao.DoctorRepository;
 import pl.klasicki.domain.Doctor;
 import pl.klasicki.exceptions.DoctorNotFoundException;
@@ -20,10 +20,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+
+@RunWith(MockitoJUnitRunner.class)
 class DoctorServiceTest {
 
     private final long USER_ID = 1L;
@@ -36,7 +36,7 @@ class DoctorServiceTest {
 
     @BeforeEach
     void setUp() {
-       // MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -61,11 +61,11 @@ class DoctorServiceTest {
     void should_return_one_doctor_when_given_id() {
 
         //given
-        Optional<Doctor> doctor = Optional.of(new Doctor("Marcin", "Klasicki", USER_ID, "dentysta"));
-        when(doctorRepository.findById(USER_ID)).thenReturn(doctor);
+        Doctor doctor = new Doctor("Marcin", "Klasicki", USER_ID, "dentysta");
 
         //when
-        Optional<Doctor> testDoctorResult = doctorService.findById(USER_ID);
+        when(doctorRepository.findById(USER_ID)).thenReturn(Optional.ofNullable(doctor));
+        Doctor testDoctorResult = doctorService.findById(USER_ID);
 
         //then
         assertThat(testDoctorResult, equalTo(doctor));
@@ -79,10 +79,12 @@ class DoctorServiceTest {
 
         //given
         //when
-        when(doctorRepository.findById(any())).thenReturn(null);
+        when(doctorRepository.findById(USER_ID)).thenThrow(DoctorNotFoundException.class);
 
         //then
         assertThrows(DoctorNotFoundException.class, () -> doctorService.findById(USER_ID));
+        verify(doctorRepository,times(1)).findById(USER_ID);
+
     }
 
     @Test
