@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.klasicki.dao.DoctorRepository;
 import pl.klasicki.domain.Doctor;
@@ -35,7 +36,7 @@ class DoctorServiceTest {
 
     @BeforeEach
     void setUp() {
-     //   MockitoAnnotations.initMocks(this);
+       // MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -44,13 +45,14 @@ class DoctorServiceTest {
 
         //given
         List<Doctor> doctorList = generateTestData();
-        when(doctorRepository.findAll()).thenReturn(doctorList);
 
         //when
+        when(doctorRepository.findAll()).thenReturn(doctorList);
         List<Doctor> testDoctorList = doctorService.getAll();
 
         //then
         assertThat(testDoctorList, hasSize(3));
+        verify(doctorRepository, times(1)).findAll();
         assertNotNull(testDoctorList);
     }
 
@@ -109,7 +111,7 @@ class DoctorServiceTest {
         doctorService.delete(USER_ID);
 
         //then
-        verify(doctorRepository, times(1)).deleteById(anyLong());
+        verify(doctorRepository, times(1)).deleteById(USER_ID);
 
     }
 

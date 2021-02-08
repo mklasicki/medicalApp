@@ -1,8 +1,12 @@
 package pl.klasicki.handlers;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,7 +31,7 @@ public class ExceptionController {
         error.setId(12);
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(exc.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
+        error.setTimeStamp(LocalDate.now());
 
         logger.error("Request " + request.getRequestURL() + " threw a exception " + exc);
 
@@ -36,11 +40,12 @@ public class ExceptionController {
 
     @ExceptionHandler
     public ResponseEntity<ExceptionResponse> handleException(HttpServletRequest request, PatientNotFoundException exc) {
+
         ExceptionResponse error = new ExceptionResponse();
         error.setId(15);
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(exc.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
+        error.setTimeStamp(LocalDate.now());
 
         logger.error("Request " + request.getRequestURL() + " threw a exception " + exc);
 
@@ -54,7 +59,21 @@ public class ExceptionController {
         error.setId(23);
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage("Bad data, use only integer values.");
-        error.setTimeStamp(System.currentTimeMillis());
+        error.setTimeStamp(LocalDate.now());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler()
+    public ResponseEntity<ExceptionResponse> handleException(HttpServletRequest request, MethodArgumentNotValidException exc) {
+
+        ExceptionResponse error = new ExceptionResponse();
+        error.setId(2);
+        error.setStatus(HttpStatus.BAD_REQUEST.value());
+        error.setMessage(Objects.requireNonNull(exc.getBindingResult().getFieldError()).getDefaultMessage());
+        error.setTimeStamp(LocalDate.now());
+
+        logger.error("Request " + request.getRequestURL() + " threw a exception " + exc);
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
@@ -66,7 +85,7 @@ public class ExceptionController {
         error.setId(22);
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(exc.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
+        error.setTimeStamp(LocalDate.now());
 
         logger.error("Request " + request.getRequestURL() + " threw a exception " + exc);
 

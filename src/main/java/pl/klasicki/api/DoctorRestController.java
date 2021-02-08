@@ -12,6 +12,7 @@ import pl.klasicki.services.DoctorService;
 
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 
 @Api(tags = "Doctor")
 @RestController
@@ -44,7 +45,7 @@ public class DoctorRestController {
 
     @ApiOperation(value = "Create a new doctor")
     @PostMapping("/api/doctors/")
-    public ResponseEntity<Doctor> add(@RequestBody Doctor doctor) {
+    public ResponseEntity<Doctor> add(@Valid @RequestBody Doctor doctor) {
         return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.CREATED);
     }
 

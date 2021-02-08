@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pl.klasicki.dao.DoctorRepository;
 import pl.klasicki.domain.Doctor;
+import pl.klasicki.exceptions.DoctorNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
-    public Optional<Doctor> findById(Long id) {
+    public Optional<Doctor> findById(Long id) throws DoctorNotFoundException {
         logger.info("Looking for doctor with id {}", id);
         return doctorRepository.findById(id);
     }

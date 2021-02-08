@@ -1,17 +1,19 @@
 package pl.klasicki.dto;
 
+import java.time.LocalDate;
+
 public class ExceptionResponse {
 
     private int id;
     private int status;
     private String message;
-    private long timeStamp;
+    private LocalDate timeStamp;
 
 
     public ExceptionResponse() {
     }
 
-    public ExceptionResponse(int id, int status, String message, long timeStamp) {
+    public ExceptionResponse(int id, int status, String message, LocalDate timeStamp) {
         this.id = id;
         this.status = status;
         this.message = message;
@@ -42,11 +44,11 @@ public class ExceptionResponse {
         this.message = message;
     }
 
-    public long getTimeStamp() {
+    public LocalDate getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
+    public void setTimeStamp(LocalDate timeStamp) {
         this.timeStamp = timeStamp;
     }
 }
