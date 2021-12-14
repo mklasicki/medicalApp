@@ -1,6 +1,9 @@
 pipeline {
 
     agent any
+    tools {
+        maven 'Maven 3.8.1'
+    }
     
     stages  {
     
@@ -12,6 +15,7 @@ pipeline {
         stage("test") {
             steps {
                 echo 'testing application'
+                sh 'mvn -v'
                 }
             }
     
