@@ -16,11 +16,11 @@ import java.util.Optional;
 @Api(tags = "Doctor")
 @RestController
 @RequestMapping("api/doctors")
-public class DoctorRestController {
+class DoctorRestController {
 
     private final DoctorService doctorService;
 
-    public DoctorRestController(DoctorService doctorService) {
+    DoctorRestController(DoctorService doctorService) {
         this.doctorService = doctorService;
     }
 
@@ -28,39 +28,39 @@ public class DoctorRestController {
 
     @ApiOperation(value = "Get list of all doctors")
     @GetMapping
-    public ResponseEntity<List<Doctor>> getAll() {
+    ResponseEntity<List<Doctor>> getAll() {
         return ResponseEntity.ok(doctorService.getAll());
     }
 
     @ApiOperation(value = "Get doctor by specialization")
     @GetMapping("spec/{spec}")
-    public ResponseEntity<List<Doctor>> findBySpec(@PathVariable String spec) {
+    ResponseEntity<List<Doctor>> findBySpec(@PathVariable String spec) {
         return ResponseEntity.ok(doctorService.findBySpec(spec));
     }
 
     @ApiOperation(value = "Get doctor by id")
     @GetMapping("id/{id}")
-    public ResponseEntity<Optional<Doctor>> findById(@PathVariable Long id) {
+    ResponseEntity<Optional<Doctor>> findById(@PathVariable Long id) {
         responseCheck(id);
         return new ResponseEntity<>(doctorService.findById(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Create a new doctor")
     @PostMapping()
-    public ResponseEntity<Doctor> add(@RequestBody Doctor doctor) {
+    ResponseEntity<Doctor> add(@RequestBody Doctor doctor) {
         return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Update a doctor's details")
     @PutMapping("{id}")
-    public ResponseEntity<Doctor> update(@PathVariable Long id, @RequestBody Doctor doctor) {
+    ResponseEntity<Doctor> update(@PathVariable Long id, @RequestBody Doctor doctor) {
         responseCheck(id);
         return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Delete a doctor")
     @DeleteMapping("{id}")
-    public ResponseEntity<Doctor> delete(@PathVariable Long id) {
+    ResponseEntity<Doctor> delete(@PathVariable Long id) {
         responseCheck(id);
         doctorService.delete(id);
         return ResponseEntity.noContent().build();
