@@ -15,48 +15,49 @@ import java.util.Optional;
 
 @Api(tags = "Doctor")
 @RestController
+@RequestMapping("api/doctors")
 public class DoctorRestController {
 
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
 
     public DoctorRestController(DoctorService doctorService) {
         this.doctorService = doctorService;
     }
 
     @ApiOperation(value = "Get list of all doctors")
-    @GetMapping("/api/doctors/")
+    @GetMapping
     public ResponseEntity<List<Doctor>> getAll() {
-        return new ResponseEntity<>(doctorService.getAll(), HttpStatus.OK) ;
+        return ResponseEntity.ok(doctorService.getAll());
     }
 
     @ApiOperation(value = "Get doctor by specialization")
-    @GetMapping("/api/doctors/spec/{spec}")
+    @GetMapping("spec/{spec}")
     public ResponseEntity<List<Doctor>> findBySpec(@PathVariable String spec) {
         return new ResponseEntity<>(doctorService.findBySpec(spec), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get doctor by id")
-    @GetMapping("/api/doctors/id/{id}")
+    @GetMapping("id/{id}")
     public ResponseEntity<Optional<Doctor>> findById(@PathVariable Long id) {
         responseCheck(id);
         return new ResponseEntity<>(doctorService.findById(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Create a new doctor")
-    @PostMapping("/api/doctors/")
+    @PostMapping()
     public ResponseEntity<Doctor> add(@RequestBody Doctor doctor) {
         return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Update a doctor's details")
-    @PutMapping("/api/doctors/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Doctor> update(@PathVariable Long id, @RequestBody Doctor doctor) {
         responseCheck(id);
         return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Delete a doctor")
-    @DeleteMapping("/api/doctors/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         responseCheck(id);
         doctorService.delete(id);
