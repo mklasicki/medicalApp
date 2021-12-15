@@ -1,4 +1,4 @@
-package pl.klasicki.exceptions;
+package pl.klasicki.commons;
 
 public class DoctorNotFoundException extends RuntimeException {
 

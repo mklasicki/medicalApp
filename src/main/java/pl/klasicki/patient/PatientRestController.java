@@ -3,30 +3,30 @@ package pl.klasicki.patient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import pl.klasicki.exceptions.PatientNotFoundException;
+import pl.klasicki.commons.PatientNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
 
 @Api(tags = "Patient")
 @RestController
-public class PatientRestController {
+class PatientRestController {
 
-    private PatientService patientService;
+    private  final PatientService patientService;
 
-    public PatientRestController(PatientService patientService) {
+    PatientRestController(PatientService patientService) {
         this.patientService = patientService;
     }
 
     @ApiOperation(value = "Get list of all the patients")
     @GetMapping("/api/patients/")
-    public List<Patient> getAll() {
+    List<Patient> getAll() {
         return patientService.getAll();
     }
 
     @ApiOperation(value = "Get patient by id")
     @GetMapping("/api/patients/{id}")
-    public Optional<Patient> findById(@PathVariable Long id) {
+    Optional<Patient> findById(@PathVariable Long id) {
 
         if (id < 0 || id > patientService.getAll().size()) {
             throw new PatientNotFoundException("Patient with id " + id + " not found.");
@@ -37,19 +37,19 @@ public class PatientRestController {
 
     @ApiOperation(value = "Create a new patient")
     @PostMapping("/api/patients/")
-    public Patient add(@RequestBody Patient patient) {
+    Patient add(@RequestBody Patient patient) {
         return patientService.add(patient);
     }
 
     @ApiOperation(value = "Update patient's details")
     @PutMapping("/api/patients/{id}")
-    public Patient update(@PathVariable Long id, @RequestBody Patient patient) {
+    Patient update(@PathVariable Long id, @RequestBody Patient patient) {
         return patientService.add(patient);
     }
 
     @ApiOperation("Delete patient")
     @DeleteMapping("/api/patients/{id}")
-    public void delete(@PathVariable Long id) {
+    void delete(@PathVariable Long id) {
         patientService.delete(id);
     }
 

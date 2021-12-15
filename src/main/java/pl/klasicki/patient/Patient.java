@@ -1,6 +1,6 @@
 package pl.klasicki.patient;
 
-import pl.klasicki.domain.Person;
+import pl.klasicki.commons.Person;
 import pl.klasicki.visits.Visit;
 
 import javax.persistence.*;

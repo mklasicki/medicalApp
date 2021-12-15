@@ -1,4 +1,4 @@
-package pl.klasicki.config;
+package pl.klasicki.commons;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

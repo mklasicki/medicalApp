@@ -1,4 +1,4 @@
-package pl.klasicki.domain;
+package pl.klasicki.commons;
 
 
 import pl.klasicki.visits.Visit;

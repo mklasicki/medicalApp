@@ -1,4 +1,4 @@
-package pl.klasicki.handlers;
+package pl.klasicki.commons;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
-import pl.klasicki.dto.ExceptionResponse;
-import pl.klasicki.exceptions.DataNotFoundException;
-import pl.klasicki.exceptions.DoctorNotFoundException;
-import pl.klasicki.exceptions.PatientNotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 

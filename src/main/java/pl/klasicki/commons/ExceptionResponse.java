@@ -1,4 +1,4 @@
-package pl.klasicki.dto;
+package pl.klasicki.commons;
 
 public class ExceptionResponse {
 

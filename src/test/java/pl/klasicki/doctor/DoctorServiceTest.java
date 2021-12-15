@@ -7,10 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.klasicki.doctor.DoctorRepository;
-import pl.klasicki.doctor.Doctor;
-import pl.klasicki.doctor.DoctorService;
-import pl.klasicki.exceptions.DoctorNotFoundException;
+import pl.klasicki.commons.DoctorNotFoundException;
 
 import java.util.Arrays;
 import java.util.List;

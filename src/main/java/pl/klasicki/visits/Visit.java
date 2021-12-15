@@ -1,7 +1,7 @@
 package pl.klasicki.visits;
 
 import pl.klasicki.doctor.Doctor;
-import pl.klasicki.domain.Prescription;
+import pl.klasicki.commons.Prescription;
 import pl.klasicki.patient.Patient;
 
 import javax.persistence.*;

@@ -13,6 +13,9 @@ import java.util.Optional;
 @RequestMapping("api/visits")
 class VisitRestController {
 
+    //TODO use ResponseEntity
+    //TODO create and use DTO object  as a response from database instead of domain object
+
     private final VisitService visitService;
     private final Logger log = LoggerFactory.getLogger(Visit.class);
 
