@@ -1,5 +1,6 @@
 package pl.klasicki.patient;
 
+import org.springframework.data.annotation.PersistenceConstructor;
 import pl.klasicki.commons.Person;
 import pl.klasicki.visits.Visit;
 
@@ -16,6 +17,7 @@ public class Patient extends Person {
     @OneToMany(mappedBy = "patient")
     private List<Visit> visitList;
 
+    @PersistenceConstructor
     public Patient() {
     }
 
