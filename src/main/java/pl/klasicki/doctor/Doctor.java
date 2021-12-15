@@ -2,7 +2,7 @@ package pl.klasicki.doctor;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 import pl.klasicki.domain.Person;
-import pl.klasicki.domain.Visit;
+import pl.klasicki.visits.Visit;
 
 import javax.persistence.*;
 import java.util.Set;

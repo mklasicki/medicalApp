@@ -1,4 +1,7 @@
-package pl.klasicki.domain;
+package pl.klasicki.patient;
+
+import pl.klasicki.domain.Person;
+import pl.klasicki.visits.Visit;
 
 import javax.persistence.*;
 import java.util.List;

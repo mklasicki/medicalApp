@@ -1,10 +1,8 @@
-package pl.klasicki.services;
+package pl.klasicki.patient;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import pl.klasicki.dao.PatientRepository;
-import pl.klasicki.domain.Patient;
 
 import java.util.List;
 import java.util.Optional;

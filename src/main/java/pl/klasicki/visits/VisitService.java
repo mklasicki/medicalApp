@@ -1,8 +1,8 @@
-package pl.klasicki.services;
+package pl.klasicki.visits;
 
 import org.springframework.stereotype.Service;
-import pl.klasicki.dao.VisitRepository;
-import pl.klasicki.domain.Visit;
+import pl.klasicki.visits.VisitRepository;
+import pl.klasicki.visits.Visit;
 
 import java.util.Optional;
 

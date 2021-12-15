@@ -1,6 +1,8 @@
-package pl.klasicki.domain;
+package pl.klasicki.visits;
 
 import pl.klasicki.doctor.Doctor;
+import pl.klasicki.domain.Prescription;
+import pl.klasicki.patient.Patient;
 
 import javax.persistence.*;
 import java.time.LocalDate;

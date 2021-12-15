@@ -1,6 +1,8 @@
 package pl.klasicki.domain;
 
 
+import pl.klasicki.visits.Visit;
+
 import javax.persistence.*;
 
 @Entity
