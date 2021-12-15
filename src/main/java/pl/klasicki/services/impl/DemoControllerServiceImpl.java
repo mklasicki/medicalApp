@@ -15,17 +15,16 @@ import java.util.List;
 public class DemoControllerServiceImpl implements DemoControllerService {
 
     private RestTemplate restTemplate;
-    private final String BASE_URL;
 
-    public DemoControllerServiceImpl(RestTemplate restTemplate, @Value("${BASE.URL}") String BASE_URL) {
+    public DemoControllerServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.BASE_URL = BASE_URL;
+
     }
 
     @Override
     public List<Doctor> getAll() {
 
-        ResponseEntity<Doctor[]> response = restTemplate.getForEntity(BASE_URL, Doctor[].class);
+        ResponseEntity<Doctor[]> response = restTemplate.getForEntity("http://localhost:8080/api/doctors/", Doctor[].class);
         Doctor[] doctors = response.getBody();
 
 
