@@ -1,5 +1,7 @@
 package pl.klasicki.domain;
 
+import pl.klasicki.doctor.Doctor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

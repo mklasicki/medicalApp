@@ -1,4 +1,4 @@
-package pl.klasicki.services;
+package pl.klasicki.doctor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -7,8 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.klasicki.dao.DoctorRepository;
-import pl.klasicki.domain.Doctor;
+import pl.klasicki.doctor.DoctorRepository;
+import pl.klasicki.doctor.Doctor;
+import pl.klasicki.doctor.DoctorService;
 import pl.klasicki.exceptions.DoctorNotFoundException;
 
 import java.util.Arrays;

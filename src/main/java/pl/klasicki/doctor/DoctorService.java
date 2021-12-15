@@ -1,10 +1,8 @@
-package pl.klasicki.services;
+package pl.klasicki.doctor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import pl.klasicki.dao.DoctorRepository;
-import pl.klasicki.domain.Doctor;
 import pl.klasicki.exceptions.DoctorNotFoundException;
 
 import java.util.List;

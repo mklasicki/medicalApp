@@ -1,6 +1,6 @@
 package pl.klasicki.services;
 
-import pl.klasicki.domain.Doctor;
+import pl.klasicki.doctor.Doctor;
 
 import java.util.List;
 

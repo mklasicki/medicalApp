@@ -1,11 +1,10 @@
 package pl.klasicki.services.impl;
 
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.klasicki.domain.Doctor;
+import pl.klasicki.doctor.Doctor;
 import pl.klasicki.services.DemoControllerService;
 
 import java.util.Arrays;

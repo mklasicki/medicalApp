@@ -1,4 +1,4 @@
-package pl.klasicki.api;
+package pl.klasicki.doctor;
 
 
 import io.swagger.annotations.Api;
@@ -6,9 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.klasicki.domain.Doctor;
 import pl.klasicki.exceptions.DoctorNotFoundException;
-import pl.klasicki.services.DoctorService;
 
 import java.util.List;
 import java.util.Optional;
