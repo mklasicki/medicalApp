@@ -24,6 +24,8 @@ public class DoctorRestController {
         this.doctorService = doctorService;
     }
 
+    //TODO: - use DTO object to transfer data from database to response
+
     @ApiOperation(value = "Get list of all doctors")
     @GetMapping
     public ResponseEntity<List<Doctor>> getAll() {
@@ -33,7 +35,7 @@ public class DoctorRestController {
     @ApiOperation(value = "Get doctor by specialization")
     @GetMapping("spec/{spec}")
     public ResponseEntity<List<Doctor>> findBySpec(@PathVariable String spec) {
-        return new ResponseEntity<>(doctorService.findBySpec(spec), HttpStatus.OK);
+        return ResponseEntity.ok(doctorService.findBySpec(spec));
     }
 
     @ApiOperation(value = "Get doctor by id")
@@ -58,10 +60,10 @@ public class DoctorRestController {
 
     @ApiOperation(value = "Delete a doctor")
     @DeleteMapping("{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<Doctor> delete(@PathVariable Long id) {
         responseCheck(id);
         doctorService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.noContent().build();
     }
 
     private void responseCheck(Long id) {

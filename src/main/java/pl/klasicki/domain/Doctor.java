@@ -1,9 +1,12 @@
 package pl.klasicki.domain;
 
+import org.springframework.data.annotation.PersistenceConstructor;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name= "doctor")
 public class Doctor extends Person {
 
     @Id
@@ -11,8 +14,9 @@ public class Doctor extends Person {
     private Long id;
     private String specialization;
     @OneToMany(mappedBy = "doctor")
-    private List<Visit> visitList;
+    private Set<Visit> visitList;
 
+    @PersistenceConstructor
     public Doctor() {
 
     }
