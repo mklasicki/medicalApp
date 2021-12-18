@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
 import pl.klasicki.doctor.DoctorNotFoundException;
+import pl.klasicki.patient.PatientNotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 

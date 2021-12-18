@@ -5,6 +5,8 @@ public class DoctorDto {
     public static Builder builder() {
         return new Builder();
     }
+
+    //TODO add validation for data passed from front end
     private final Long id;
     private final String firstName;
     private final String lastName;
