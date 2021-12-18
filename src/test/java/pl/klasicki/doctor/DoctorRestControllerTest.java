@@ -32,6 +32,7 @@ class DoctorRestControllerTest {
 
     @MockBean
     DoctorService doctorService;
+    DoctorQueryService doctorQueryService;
 
     @InjectMocks
     DoctorRestController doctorRestController;
@@ -50,7 +51,7 @@ class DoctorRestControllerTest {
 
 
         //given
-        given(doctorService.getAll()).willReturn(generateTestData().stream().map(d -> mapper.toDto(d)).collect(Collectors.toList()));
+        given(doctorQueryService.getAll()).willReturn(generateTestData().stream().map(d -> mapper.toDto(d)).collect(Collectors.toList()));
 
         //when
        // List<Doctor> testData = doctorRestController.getAll();
@@ -61,7 +62,7 @@ class DoctorRestControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
        // assertThat(testData, hasSize(3));
-        verify(doctorService, times(2)).getAll();
+        verify(doctorQueryService, times(2)).getAll();
     }
 
     @Test
@@ -72,7 +73,7 @@ class DoctorRestControllerTest {
     void findById() throws Exception {
 
         //given
-        given(doctorService.getAll()).willReturn(generateTestData().stream().map(d -> mapper.toDto(d)).collect(Collectors.toList()));
+        given(doctorQueryService.getAll()).willReturn(generateTestData().stream().map(d -> mapper.toDto(d)).collect(Collectors.toList()));
 
         //then
        // Optional<Doctor> testDoctorResult = doctorRestController.findById(USER_ID);

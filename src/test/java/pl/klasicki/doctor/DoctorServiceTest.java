@@ -28,6 +28,7 @@ class DoctorServiceTest {
 
     @InjectMocks
     DoctorService doctorService;
+    DoctorQueryService doctorQueryService;
 
     @BeforeEach
     void setUp() {
@@ -43,7 +44,7 @@ class DoctorServiceTest {
         when(doctorRepository.findAll()).thenReturn(doctorList);
 
         //when
-        List<DoctorDto> testDoctorList = doctorService.getAll();
+        List<DoctorDto> testDoctorList = doctorQueryService.getAll();
 
         //then
         assertThat(testDoctorList, hasSize(3));
@@ -76,7 +77,7 @@ class DoctorServiceTest {
         when(doctorRepository.findById(any())).thenReturn(null);
 
         //then
-        assertThrows(DoctorNotFoundException.class, () -> doctorService.findById(USER_ID));
+        assertThrows(DoctorNotFoundException.class, () -> doctorQueryService.findById(USER_ID));
     }
 
 //    @Test

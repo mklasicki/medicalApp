@@ -3,7 +3,6 @@ package pl.klasicki.doctor;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +15,24 @@ import java.util.Optional;
 class DoctorRestController {
 
     private final DoctorService doctorService;
+    private final DoctorQueryService doctorQueryService;
 
-    DoctorRestController(DoctorService doctorService) {
+
+    DoctorRestController(DoctorService doctorService, DoctorQueryService doctorQueryService) {
         this.doctorService = doctorService;
+        this.doctorQueryService = doctorQueryService;
     }
-
-    //TODO: - use DTO object to transfer data from database to response
 
     @ApiOperation(value = "Get list of all doctors")
     @GetMapping
     ResponseEntity<List<DoctorDto>> getAll() {
-        return ResponseEntity.ok(doctorService.getAll());
+        return ResponseEntity.ok(doctorQueryService.getAll());
     }
 
     @ApiOperation(value = "Get doctor by specialization")
     @GetMapping("spec/{spec}")
     ResponseEntity<List<DoctorDto>> findBySpec(@PathVariable String spec) {
-        return ResponseEntity.ok(doctorService.findBySpec(spec));
+        return ResponseEntity.ok(doctorQueryService.findBySpec(spec));
 
     }
 
@@ -40,7 +40,7 @@ class DoctorRestController {
     @GetMapping("id/{id}")
     ResponseEntity<Optional<DoctorDto>> findById(@PathVariable Long id) {
         responseCheck(id);
-        return ResponseEntity.ok(doctorService.findById(id));
+        return ResponseEntity.ok(doctorQueryService.findById(id));
     }
 
     @ApiOperation(value = "Create a new doctor")
@@ -65,7 +65,7 @@ class DoctorRestController {
     }
 
     private void responseCheck(Long id) {
-        if (id < 0 || id > doctorService.getAll().size()) {
+        if (id < 0 || id > doctorQueryService.getAll().size()) {
             throw new DoctorNotFoundException("Doctor id not found " + id);
         }
     }
