@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.klasicki.commons.DoctorNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,39 +25,40 @@ class DoctorRestController {
 
     @ApiOperation(value = "Get list of all doctors")
     @GetMapping
-    ResponseEntity<List<Doctor>> getAll() {
+    ResponseEntity<List<DoctorDto>> getAll() {
         return ResponseEntity.ok(doctorService.getAll());
     }
 
     @ApiOperation(value = "Get doctor by specialization")
     @GetMapping("spec/{spec}")
-    ResponseEntity<List<Doctor>> findBySpec(@PathVariable String spec) {
+    ResponseEntity<List<DoctorDto>> findBySpec(@PathVariable String spec) {
         return ResponseEntity.ok(doctorService.findBySpec(spec));
+
     }
 
     @ApiOperation(value = "Get doctor by id")
     @GetMapping("id/{id}")
-    ResponseEntity<Optional<Doctor>> findById(@PathVariable Long id) {
+    ResponseEntity<Optional<DoctorDto>> findById(@PathVariable Long id) {
         responseCheck(id);
-        return new ResponseEntity<>(doctorService.findById(id), HttpStatus.OK);
+        return ResponseEntity.ok(doctorService.findById(id));
     }
 
     @ApiOperation(value = "Create a new doctor")
     @PostMapping()
-    ResponseEntity<Doctor> add(@RequestBody Doctor doctor) {
-        return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.CREATED);
+    ResponseEntity<DoctorDto> add(@RequestBody DoctorDto doctor) {
+        return ResponseEntity.ok(doctor);
     }
 
     @ApiOperation(value = "Update a doctor's details")
     @PutMapping("{id}")
-    ResponseEntity<Doctor> update(@PathVariable Long id, @RequestBody Doctor doctor) {
+    ResponseEntity<DoctorDto> update(@PathVariable Long id, @RequestBody DoctorDto doctor) {
         responseCheck(id);
-        return new ResponseEntity<>(doctorService.add(doctor), HttpStatus.OK);
+        return ResponseEntity.ok(doctor);
     }
 
     @ApiOperation(value = "Delete a doctor")
     @DeleteMapping("{id}")
-    ResponseEntity<Doctor> delete(@PathVariable Long id) {
+    ResponseEntity<DoctorDto> delete(@PathVariable Long id) {
         responseCheck(id);
         doctorService.delete(id);
         return ResponseEntity.noContent().build();

@@ -1,7 +1,9 @@
 package pl.klasicki.doctor;
 
+import org.springframework.stereotype.Component;
 import pl.klasicki.commons.Mapper;
 
+@Component
 class DoctorMapper implements Mapper<DoctorDto,Doctor> {
 
     @Override

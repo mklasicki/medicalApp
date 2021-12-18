@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 import static org.mockito.BDDMockito.given;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class DoctorRestControllerTest {
 
     private final long USER_ID = 1L;
+    private final DoctorMapper mapper;
 
     @Autowired
     MockMvc mockMvc;
@@ -34,6 +36,10 @@ class DoctorRestControllerTest {
     @InjectMocks
     DoctorRestController doctorRestController;
 
+    DoctorRestControllerTest(DoctorMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @BeforeEach
     void  setUp() {
         MockitoAnnotations.initMocks(this);
@@ -42,8 +48,9 @@ class DoctorRestControllerTest {
     @Test
     void getAll() throws Exception {
 
+
         //given
-        given(doctorService.getAll()).willReturn(generateTestData());
+        given(doctorService.getAll()).willReturn(generateTestData().stream().map(d -> mapper.toDto(d)).collect(Collectors.toList()));
 
         //when
        // List<Doctor> testData = doctorRestController.getAll();
@@ -65,7 +72,7 @@ class DoctorRestControllerTest {
     void findById() throws Exception {
 
         //given
-        given(doctorService.getAll()).willReturn(generateTestData());
+        given(doctorService.getAll()).willReturn(generateTestData().stream().map(d -> mapper.toDto(d)).collect(Collectors.toList()));
 
         //then
        // Optional<Doctor> testDoctorResult = doctorRestController.findById(USER_ID);
@@ -81,7 +88,7 @@ class DoctorRestControllerTest {
     void add() throws Exception {
 
         //given
-        given(doctorService.add(any(Doctor.class))).
+        given(doctorService.add(any(DoctorDto.class))).
                 willReturn(new Doctor("Marcin", "Klasicki", 1L, "dentysta"));
 
         //when

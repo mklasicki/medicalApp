@@ -3,7 +3,6 @@ package pl.klasicki.doctor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import pl.klasicki.commons.DoctorNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,34 +12,33 @@ import java.util.stream.Collectors;
 @Service
 class DoctorService {
 
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
+    private final DoctorMapper mapper;
     private Logger logger = LoggerFactory.getLogger(DoctorService.class);
 
-    DoctorService(DoctorRepository doctorRepository) {
+    DoctorService(DoctorRepository doctorRepository, DoctorMapper mapper)
+    {
         this.doctorRepository = doctorRepository;
+        this.mapper = mapper;
     }
 
-    List<Doctor> getAll() {
+    List<DoctorDto> getAll() {
         logger.info("Getting all of the doctors from the list");
-        return doctorRepository.findAll();
+        return doctorRepository.findAll()
+                .stream()
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    Optional<Doctor> findById(Long id) {
-
-        Optional<Doctor> result = doctorRepository.findById(id);
-
-        if(result == null) {
-            logger.info("Doctor with id {} not found", id);
-            throw new DoctorNotFoundException("Doctor with id {} not found");
-        }
+    Optional<DoctorDto> findById(Long id) {
 
         logger.info("Looking for doctor with id {}", id);
-        return result;
+        return Optional.of(mapper.toDto(doctorRepository.findById(id).get()));
     }
 
-    Doctor add(Doctor doctor) {
+    Doctor add(DoctorDto doctor) {
         logger.info("Added new doctor to the doctor list with name {}", doctor.getFirstName());
-        return doctorRepository.save(doctor);
+        return doctorRepository.save(mapper.toDomain(doctor));
     }
 
     void delete(Long id) {
@@ -48,9 +46,11 @@ class DoctorService {
         doctorRepository.deleteById(id);
     }
 
-    List<Doctor> findBySpec(String spec) {
-        return doctorRepository.findAll().stream().filter(doctor -> doctor.getSpecialization()
-                .equals(spec)).collect(Collectors.toList());
+    List<DoctorDto> findBySpec(String spec) {
+        return doctorRepository.findAll()
+                .stream()
+                .filter(doctor -> doctor.getSpecialization()
+                .equals(spec)).map(d -> mapper.toDto(d)).collect(Collectors.toList());
     }
 
 }
