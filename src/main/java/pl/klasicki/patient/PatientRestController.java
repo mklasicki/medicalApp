@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Api(tags = "Patient")
 @RestController
+@RequestMapping("api/patients")
 class PatientRestController {
 
     private  final PatientService patientService;
@@ -18,13 +19,13 @@ class PatientRestController {
     }
 
     @ApiOperation(value = "Get list of all the patients")
-    @GetMapping("/api/patients/")
+    @GetMapping
     List<Patient> getAll() {
         return patientService.getAll();
     }
 
     @ApiOperation(value = "Get patient by id")
-    @GetMapping("/api/patients/{id}")
+    @GetMapping("{id}")
     Optional<Patient> findById(@PathVariable Long id) {
 
         if (id < 0 || id > patientService.getAll().size()) {
@@ -35,19 +36,19 @@ class PatientRestController {
     }
 
     @ApiOperation(value = "Create a new patient")
-    @PostMapping("/api/patients/")
+    @PostMapping
     Patient add(@RequestBody Patient patient) {
         return patientService.add(patient);
     }
 
     @ApiOperation(value = "Update patient's details")
-    @PutMapping("/api/patients/{id}")
+    @PutMapping("{id}")
     Patient update(@PathVariable Long id, @RequestBody Patient patient) {
         return patientService.add(patient);
     }
 
     @ApiOperation("Delete patient")
-    @DeleteMapping("/api/patients/{id}")
+    @DeleteMapping("{id}")
     void delete(@PathVariable Long id) {
         patientService.delete(id);
     }

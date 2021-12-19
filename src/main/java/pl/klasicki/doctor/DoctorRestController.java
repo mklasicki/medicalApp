@@ -17,7 +17,6 @@ class DoctorRestController {
     private final DoctorService doctorService;
     private final DoctorQueryService doctorQueryService;
 
-
     DoctorRestController(DoctorService doctorService, DoctorQueryService doctorQueryService) {
         this.doctorService = doctorService;
         this.doctorQueryService = doctorQueryService;
