@@ -28,13 +28,13 @@ class PatientRestController {
 
     @ApiOperation(value = "Get patient by id")
     @GetMapping("{id}")
-    Optional<Patient> findById(@PathVariable Long id) {
+    Optional<PatientDto> findById(@PathVariable Long id) {
 
-        if (id < 0 || id > patientService.getAll().size()) {
+        if (id < 0 || id > patientQueryRepository.count()) {
             throw new PatientNotFoundException("Patient with id " + id + " not found.");
         }
 
-        return patientService.findById(id);
+        return patientQueryRepository.findPatientByIdNumber(id);
     }
 
     @ApiOperation(value = "Create a new patient")
