@@ -12,16 +12,18 @@ import java.util.Optional;
 @RequestMapping("api/patients")
 class PatientRestController {
 
-    private  final PatientService patientService;
+    private final PatientService patientService;
+    private final PatientQueryRepository patientQueryRepository;
 
-    PatientRestController(PatientService patientService) {
+    PatientRestController(PatientService patientService, PatientQueryRepository patientQueryRepository) {
         this.patientService = patientService;
+        this.patientQueryRepository = patientQueryRepository;
     }
 
     @ApiOperation(value = "Get list of all the patients")
     @GetMapping
-    List<Patient> getAll() {
-        return patientService.getAll();
+    List<PatientDto> getAll() {
+        return patientQueryRepository.findAllBy();
     }
 
     @ApiOperation(value = "Get patient by id")
