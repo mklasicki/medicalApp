@@ -1,4 +1,4 @@
-package pl.klasicki.patient;
+package pl.klasicki.commons;
 
 public class PatientNotFoundException extends RuntimeException {
 

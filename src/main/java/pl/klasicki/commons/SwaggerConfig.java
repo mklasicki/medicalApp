@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 @EnableSwagger2
 @Configuration
-public class SwaggerConfig {
+class SwaggerConfig {
 
     @Bean
-    public Docket api() {
+    Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
@@ -29,7 +29,7 @@ public class SwaggerConfig {
 
     }
 
-    private ApiInfo apiInfo() {
+    ApiInfo apiInfo() {
 
         Contact contact = new Contact("Marcin Klasicki", "https://www.klasicki.pl", "klasicki.m@gmail.com");
 

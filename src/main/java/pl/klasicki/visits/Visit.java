@@ -2,7 +2,7 @@ package pl.klasicki.visits;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 import pl.klasicki.doctor.Doctor;
-import pl.klasicki.commons.Prescription;
+import pl.klasicki.Prescription.Prescription;
 import pl.klasicki.patient.Patient;
 
 import javax.persistence.*;

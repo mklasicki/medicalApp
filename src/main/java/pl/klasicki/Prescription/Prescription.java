@@ -1,4 +1,4 @@
-package pl.klasicki.commons;
+package pl.klasicki.Prescription;
 
 
 import pl.klasicki.visits.Visit;

@@ -1,6 +1,6 @@
 package pl.klasicki.commons;
 
-public class ExceptionResponse {
+class ExceptionResponse {
 
     private int id;
     private int status;
@@ -8,45 +8,45 @@ public class ExceptionResponse {
     private long timeStamp;
 
 
-    public ExceptionResponse() {
+    ExceptionResponse() {
     }
 
-    public ExceptionResponse(int id, int status, String message, long timeStamp) {
+    ExceptionResponse(int id, int status, String message, long timeStamp) {
         this.id = id;
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
-    public int getStatus() {
+    int getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    void setStatus(int status) {
         this.status = status;
     }
 
-    public String getMessage() {
+    String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    void setMessage(String message) {
         this.message = message;
     }
 
-    public long getTimeStamp() {
+    long getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
+    void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
 }
