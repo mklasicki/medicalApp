@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class DoctorService {
+public class DoctorFacade {
 
     private final DoctorRepository doctorRepository;
     private final DoctorMapper mapper;
-    private Logger logger = LoggerFactory.getLogger(DoctorService.class);
+    private final Logger logger = LoggerFactory.getLogger(DoctorFacade.class);
 
-    public DoctorService(DoctorRepository doctorRepository, DoctorMapper mapper)
+    public DoctorFacade(DoctorRepository doctorRepository, DoctorMapper mapper)
     {
         this.doctorRepository = doctorRepository;
         this.mapper = mapper;

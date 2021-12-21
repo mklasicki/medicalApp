@@ -15,10 +15,10 @@ import java.util.Optional;
 @RequestMapping("api/doctors")
 class DoctorRestController {
 
-    private final DoctorService doctorService;
+    private final DoctorFacade doctorService;
     private final DoctorQueryService doctorQueryService;
 
-    DoctorRestController(DoctorService doctorService, DoctorQueryService doctorQueryService) {
+    DoctorRestController(DoctorFacade doctorService, DoctorQueryService doctorQueryService) {
         this.doctorService = doctorService;
         this.doctorQueryService = doctorQueryService;
     }

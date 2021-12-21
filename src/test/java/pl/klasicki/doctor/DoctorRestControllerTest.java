@@ -31,7 +31,7 @@ class DoctorRestControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    DoctorService doctorService;
+    DoctorFacade doctorService;
     DoctorQueryService doctorQueryService;
 
     @InjectMocks

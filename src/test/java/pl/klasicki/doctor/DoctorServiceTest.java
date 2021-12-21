@@ -28,7 +28,7 @@ class DoctorServiceTest {
     DoctorRepository doctorRepository;
 
     @InjectMocks
-    DoctorService doctorService;
+    DoctorFacade doctorService;
     DoctorQueryService doctorQueryService;
 
     @BeforeEach

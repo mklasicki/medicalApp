@@ -23,25 +23,25 @@ public class Doctor extends Person {
 
     }
 
-    public Doctor(String firstName, String lastName, Long id, String specialization) {
+    Doctor(String firstName, String lastName, Long id, String specialization) {
         super(firstName, lastName);
         this.id = id;
         this.specialization = specialization;
     }
 
-    public Long getId() {
+    Long getId() {
         return id;
     }
 
-    public String getSpecialization() {
+    String getSpecialization() {
         return specialization;
     }
 
-    public void setId(Long id) {
+    void setId(Long id) {
         this.id = id;
     }
 
-    public void setSpecialization(String specialization) {
+    void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
 
