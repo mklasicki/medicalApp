@@ -7,6 +7,7 @@ public class DoctorDto {
     }
 
     //TODO add validation for data passed from front end
+    //TODO add method to map DoctorDto to Doctor object
     private final Long id;
     private final String firstName;
     private final String lastName;

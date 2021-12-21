@@ -17,10 +17,6 @@ public class SimpleDoctorDto {
     public SimpleDoctorDto() {
     }
 
-    public SimpleDoctorDto(Long id, String specialization) {
-        this.id = id;
-        this.specialization = specialization;
-    }
 
     public Long getId() {
         return id;
