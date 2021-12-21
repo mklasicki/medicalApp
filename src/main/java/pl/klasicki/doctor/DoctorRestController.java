@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.klasicki.commons.DoctorNotFoundException;
+import pl.klasicki.doctor.dto.DoctorDto;
 
 import java.util.List;
 import java.util.Optional;

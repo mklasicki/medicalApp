@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.klasicki.commons.DoctorNotFoundException;
+import pl.klasicki.doctor.dto.DoctorDto;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.klasicki.doctor;
+package pl.klasicki.doctor.dto;
 
 public class DoctorDto {
 

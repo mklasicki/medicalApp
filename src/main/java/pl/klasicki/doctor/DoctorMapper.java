@@ -2,6 +2,7 @@ package pl.klasicki.doctor;
 
 import org.springframework.stereotype.Component;
 import pl.klasicki.commons.Mapper;
+import pl.klasicki.doctor.dto.DoctorDto;
 
 @Component
 class DoctorMapper implements Mapper<DoctorDto,Doctor> {

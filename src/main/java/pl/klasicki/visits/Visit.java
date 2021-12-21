@@ -1,8 +1,8 @@
 package pl.klasicki.visits;
 
 import org.springframework.data.annotation.PersistenceConstructor;
-import pl.klasicki.doctor.Doctor;
 import pl.klasicki.Prescription.Prescription;
+import pl.klasicki.doctor.dto.SimpleDoctorDto;
 import pl.klasicki.patient.Patient;
 
 import javax.persistence.*;
@@ -17,7 +17,7 @@ public class Visit {
     private LocalDate date;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
-    private Doctor doctor;
+    private SimpleDoctorDto doctor;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id", referencedColumnName = "idNumber")
     private Patient patient;
@@ -45,11 +45,11 @@ public class Visit {
         this.date = date;
     }
 
-    public Doctor getDoctor() {
+    public SimpleDoctorDto getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(SimpleDoctorDto doctor) {
         this.doctor = doctor;
     }
 

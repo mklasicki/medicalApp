@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name= "doctor")
-public class Doctor extends Person {
+class Doctor extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,7 @@ public class Doctor extends Person {
     private Set<Visit> visitList;
 
     @PersistenceConstructor
-    public Doctor() {
-
+    protected Doctor() {
     }
 
     Doctor(String firstName, String lastName, Long id, String specialization) {
