@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Patient extends Person {
+class Patient extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,28 +18,16 @@ public class Patient extends Person {
     private List<Visit> visitList;
 
     @PersistenceConstructor
-    public Patient() {
+    protected Patient() {
     }
 
-    public Patient(String firstName, String lastName, Long idNumber, String email) {
-        super(firstName, lastName);
-        this.idNumber = idNumber;
-        this.email = email;
-    }
 
-    public Long getIdNumber() {
+    Long getIdNumber() {
         return idNumber;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "idNumber=" + idNumber +
-                ", email='" + email + '\'' +
-                "} " + super.toString();
-    }
 }

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import pl.klasicki.commons.PatientNotFoundException;
+import pl.klasicki.patient.dto.PatientDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +14,10 @@ import java.util.Optional;
 @RequestMapping("api/patients")
 class PatientRestController {
 
-    private final PatientService patientService;
+    private final PatientFacade patientService;
     private final PatientQueryRepository patientQueryRepository;
 
-    PatientRestController(PatientService patientService, PatientQueryRepository patientQueryRepository) {
+    PatientRestController(PatientFacade patientService, PatientQueryRepository patientQueryRepository) {
         this.patientService = patientService;
         this.patientQueryRepository = patientQueryRepository;
     }

@@ -1,4 +1,4 @@
-package pl.klasicki.patient;
+package pl.klasicki.patient.dto;
 
 public interface PatientDto {
 

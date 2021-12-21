@@ -3,7 +3,7 @@ package pl.klasicki.visits;
 import org.springframework.data.annotation.PersistenceConstructor;
 import pl.klasicki.Prescription.Prescription;
 import pl.klasicki.doctor.dto.SimpleDoctorDto;
-import pl.klasicki.patient.Patient;
+import pl.klasicki.patient.dto.SimplePatientDto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class Visit {
     private SimpleDoctorDto doctor;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id", referencedColumnName = "idNumber")
-    private Patient patient;
+    private SimplePatientDto patient;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "prescription_id", referencedColumnName = "id")
     private Prescription prescription;
@@ -53,11 +53,11 @@ public class Visit {
         this.doctor = doctor;
     }
 
-    public Patient getPatient() {
+    public SimplePatientDto getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(SimplePatientDto patient) {
         this.patient = patient;
     }
 

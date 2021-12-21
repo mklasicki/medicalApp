@@ -8,15 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class PatientService {
+public class PatientFacade {
 
-    private final Logger logger = LoggerFactory.getLogger(PatientService.class);
+    private final Logger logger = LoggerFactory.getLogger(PatientFacade.class);
     private final PatientRepository patientRepository;
 
-    PatientService(PatientRepository patientRepository) {
+    PatientFacade(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
+    //TODO pass patientdto object to database
     List<Patient> getAll() {
         logger.info("Getting all of the patients from the list");
         return patientRepository.findAll();

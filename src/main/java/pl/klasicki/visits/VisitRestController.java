@@ -30,6 +30,7 @@ class VisitRestController {
         return visitService.getAll();
     }
 
+    //TODO make logic for new visit (pass doctor and patient)
     @ApiOperation(value = "Get visit by id")
     @GetMapping("{id}")
     Optional<Visit> findById(@PathVariable Long id) {
